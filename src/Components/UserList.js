@@ -3,6 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "../constants/constant";
 import UserCard from "./UserCard";
 import SearchBar from "./SearchBar";
+import Swal from "sweetalert2";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +21,11 @@ const UserList = () => {
       setUsers(response.data.data);
       setTotalPages(response.data.total_pages);
     } catch {
-      alert("Error fetching users");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to fetch users.",
+      });
     }
   };
 
@@ -29,7 +34,11 @@ const UserList = () => {
       const response = await axios.get(`${BASE_URL}users?page=1&per_page=100`);
       return response.data.data;
     } catch {
-      alert("Error fetching users");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to fetch all users.",
+      });
       return [];
     }
   };
@@ -70,9 +79,17 @@ const UserList = () => {
         const updatedUsers = users.filter((user) => user.id !== id);
         setUsers(updatedUsers);
       }
-      alert("User deleted successfully");
+      Swal.fire({
+        icon: "success",
+        title: "Deleted",
+        text: "User deleted successfully.",
+      });
     } catch {
-      alert("Failed to delete user");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to delete user.",
+      });
     }
   };
 
