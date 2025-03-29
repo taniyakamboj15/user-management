@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/constant";
-import { showErrorAlert, showSuccessAlert } from "./alert"; // Assuming you have alert functions
+import { showErrorAlert, showSuccessAlert } from "./alert";
 
 const updateUser = async (id, updatedUser, onSuccess) => {
   try {

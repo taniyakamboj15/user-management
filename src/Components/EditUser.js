@@ -63,7 +63,7 @@ const EditUser = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button className='bg-fuchsia-400 w-full text-white py-2 rounded hover:bg-fuchsia-600'>
+        <button className='bg-fuchsia-400 w-full text-white py-2 rounded hover:bg-fuchsia-600 hover:cursor-pointer active:scale-95'>
           Update
         </button>
       </form>
