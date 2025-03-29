@@ -10,9 +10,11 @@ const EditUser = () => {
   const [firstName, setFirstName] = useState(user.first_name);
   const [lastName, setLastName] = useState(user.last_name);
   const [email, setEmail] = useState(user.email);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    setIsUpdating(true);
 
     const updatedUser = {
       first_name: firstName,
@@ -24,6 +26,8 @@ const EditUser = () => {
       await updateUser(user.id, updatedUser, () => navigate("/users"));
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -64,7 +68,7 @@ const EditUser = () => {
           required
         />
         <button className='bg-fuchsia-400 w-full text-white py-2 rounded hover:bg-fuchsia-600 hover:cursor-pointer active:scale-95'>
-          Update
+          {isUpdating ? "Updating..." : "Update"}
         </button>
       </form>
     </div>
