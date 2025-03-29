@@ -4,6 +4,7 @@ import { BASE_URL } from "../constants/constant";
 import UserCard from "./UserCard";
 import SearchBar from "./SearchBar";
 import Swal from "sweetalert2";
+import Shimmer from "./Shimmer";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -96,6 +97,9 @@ const UserList = () => {
   const displayedUsers = isSearching
     ? filteredUsers.slice((page - 1) * usersPerPage, page * usersPerPage)
     : users;
+  if (users.length === 0) {
+    return <Shimmer />;
+  }
 
   return (
     <div className='p-6'>
